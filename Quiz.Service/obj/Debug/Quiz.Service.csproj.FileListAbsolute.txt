@@ -1,0 +1,10 @@
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\Quiz.Service.exe.config
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\Quiz.Service.exe
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\Quiz.Service.pdb
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\EntityFramework.dll
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\EntityFramework.xml
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\obj\Debug\Quiz.Service.exe
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\obj\Debug\Quiz.Service.pdb
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\obj\Debug\Quiz.Service.csprojResolveAssemblyReference.cache

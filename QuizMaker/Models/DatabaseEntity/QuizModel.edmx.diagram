@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1b775ce165fe4424ab60c5d94329ea50" Name="Diagram1">
+        <EntityTypeShape EntityType="QuizDBModel.Answers" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizDBModel.PassedTest" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizDBModel.Questions" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizDBModel.Tests" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizDBModel.Users" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizDBModel.Variants" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="QuizDBModel.FK__Answers__variant__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizDBModel.FK__PassedTes__testI__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizDBModel.FK__PassedTes__userI__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizDBModel.FK__Questions__testI__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizDBModel.FK__Variants__questi__15502E78" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

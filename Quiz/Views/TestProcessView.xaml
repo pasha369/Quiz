@@ -1,0 +1,108 @@
+﻿<Controls:MetroWindow x:Class="Quiz.Views.TestProcessView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Models="clr-namespace:QuizMaker.Models"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="TestProcessView" Height="300" Width="500">
+    <Window.Resources>
+        
+        <DataTemplate x:Key="TextVariant" DataType="Models:VariantModel">
+            <WrapPanel>
+                
+                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+                <TextBlock Text="{Binding VariantText}"/>
+            </WrapPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ImageVariant" DataType="Models:VariantModel">
+            <WrapPanel>
+                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+                <Image Source="{Binding ImageSrc}"></Image>
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock FontSize="20" Padding="10">Quiz template</TextBlock>
+            <TextBlock Background="CornflowerBlue" Padding="10 5"
+                        Name="txtbCurInfo">
+            </TextBlock>
+
+
+            <!--Question-->
+            <TextBlock FontSize="14" Padding="50 10" Name="txtbQuestion"
+                       Text="{Binding CurrentQuestion.QuestionText}">
+            </TextBlock>
+            <!--Question-->
+
+            <!--Choose variant-->
+
+            <GroupBox Header="Answer" Grid.Column="0">
+
+                <ListView 
+
+                    ItemsSource="{Binding Path=CurrentQuestion.Variants, 
+                                UpdateSourceTrigger=PropertyChanged}"
+                    BorderThickness="0">
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate DataType="Models:VariantModel">
+                            <ContentControl Content="{Binding }" >
+                                <ContentControl.Style>
+                                    <Style TargetType="{x:Type ContentControl}">
+
+                                        <!-- Default Template -->
+                                        <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=TextVariant}" />
+
+                                        <!-- Triggers to change Template -->
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Type}" Value="Image">
+                                                <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=ImageVariant}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <!--<ListView ItemsSource="{Binding Path=CurrentQuestion.Variants, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView.BorderThickness>0</ListView.BorderThickness>
+                        <ListView.ItemTemplate>
+                        <DataTemplate DataType="Models:VariantModel">
+                            <WrapPanel>
+                                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+                                <TextBlock Text="{Binding VariantText}"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+                <!--<ScrollViewer  Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" Height="140" CanContentScroll="True">
+                                <StackPanel Name="stackVariants">
+                                </StackPanel>
+                            </ScrollViewer>-->
+            </GroupBox>
+            <!--Choose variant-->
+            <!--Button panel-->
+        </StackPanel>
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Name="btnPrev" Command="{Binding PrevCmd}">Prev</Button>
+            <Button Grid.Column="1" Name="btnFinish" >Finish</Button>
+            <Button Grid.Column="2" Name="btnNext" Command="{Binding NextCmd}">Next</Button>
+        </Grid>
+        <!--Button panel-->
+    </Grid>
+</Controls:MetroWindow>

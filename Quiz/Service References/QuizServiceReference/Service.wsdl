@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/QuizMaker.WcfService.Model" />
+      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" />
+      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAuth_SignIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignIn" />
+  </wsdl:message>
+  <wsdl:message name="IAuth_SignIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuth_SignUp_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignUp" />
+  </wsdl:message>
+  <wsdl:message name="IAuth_SignUp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTest" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFileTransfer_UploadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="IFileTransfer_UploadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFileTransfer_DownloadImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadImage" />
+  </wsdl:message>
+  <wsdl:message name="IFileTransfer_DownloadImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadImageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAuth">
+    <wsdl:operation name="SignIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuth/SignIn" message="tns:IAuth_SignIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuth/SignInResponse" message="tns:IAuth_SignIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SignUp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuth/SignUp" message="tns:IAuth_SignUp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuth/SignUpResponse" message="tns:IAuth_SignUp_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITestOperation">
+    <wsdl:operation name="GetTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestOperation/GetTest" message="tns:ITestOperation_GetTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestOperation/GetTestResponse" message="tns:ITestOperation_GetTest_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFileTransfer">
+    <wsdl:operation name="UploadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileTransfer/UploadFile" message="tns:IFileTransfer_UploadFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileTransfer/UploadFileResponse" message="tns:IFileTransfer_UploadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileTransfer/DownloadImage" message="tns:IFileTransfer_DownloadImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileTransfer/DownloadImageResponse" message="tns:IFileTransfer_DownloadImage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAuth" type="tns:IAuth">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SignIn">
+      <soap:operation soapAction="http://tempuri.org/IAuth/SignIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignUp">
+      <soap:operation soapAction="http://tempuri.org/IAuth/SignUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ITestOperation" type="tns:ITestOperation">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTest">
+      <soap:operation soapAction="http://tempuri.org/ITestOperation/GetTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IFileTransfer" type="tns:IFileTransfer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/IFileTransfer/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadImage">
+      <soap:operation soapAction="http://tempuri.org/IFileTransfer/DownloadImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IAuth" binding="tns:BasicHttpBinding_IAuth">
+      <soap:address location="http://localhost:10000/Quiz/ep1" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ITestOperation" binding="tns:BasicHttpBinding_ITestOperation">
+      <soap:address location="http://localhost:10000/Quiz/ep1" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IFileTransfer" binding="tns:BasicHttpBinding_IFileTransfer">
+      <soap:address location="http://localhost:10000/Quiz/ep1" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

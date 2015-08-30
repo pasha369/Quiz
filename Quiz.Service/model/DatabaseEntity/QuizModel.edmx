@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuizDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="QuizDBModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="QuizDBModel.Store.Answers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PassedTest" EntityType="QuizDBModel.Store.PassedTest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Questions" EntityType="QuizDBModel.Store.Questions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tests" EntityType="QuizDBModel.Store.Tests" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="QuizDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Variants" EntityType="QuizDBModel.Store.Variants" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Answers__variant__182C9B23" Association="QuizDBModel.Store.FK__Answers__variant__182C9B23">
+            <End Role="Variants" EntitySet="Variants" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PassedTes__testI__1CF15040" Association="QuizDBModel.Store.FK__PassedTes__testI__1CF15040">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="PassedTest" EntitySet="PassedTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PassedTes__userI__1DE57479" Association="QuizDBModel.Store.FK__PassedTes__userI__1DE57479">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PassedTest" EntitySet="PassedTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__testI__1273C1CD" Association="QuizDBModel.Store.FK__Questions__testI__1273C1CD">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Variants__questi__15502E78" Association="QuizDBModel.Store.FK__Variants__questi__15502E78">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Variants" EntitySet="Variants" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="questionId" Type="int" />
+          <Property Name="variantId" Type="int" />
+        </EntityType>
+        <EntityType Name="PassedTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="testId" Type="int" />
+          <Property Name="userId" Type="int" />
+          <Property Name="score" Type="int" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="testId" Type="int" />
+          <Property Name="question" Type="text" />
+          <Property Name="question_type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="60" />
+          <Property Name="last_name" Type="varchar" MaxLength="60" />
+          <Property Name="user_login" Type="varchar" MaxLength="60" />
+          <Property Name="user_pass" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Variants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="variant" Type="text" />
+          <Property Name="questionId" Type="int" />
+          <Property Name="imgPath" Type="varchar" MaxLength="350" />
+          <Property Name="variant_type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Answers__variant__182C9B23">
+          <End Role="Variants" Type="QuizDBModel.Store.Variants" Multiplicity="0..1" />
+          <End Role="Answers" Type="QuizDBModel.Store.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="variantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PassedTes__testI__1CF15040">
+          <End Role="Tests" Type="QuizDBModel.Store.Tests" Multiplicity="0..1" />
+          <End Role="PassedTest" Type="QuizDBModel.Store.PassedTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PassedTest">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PassedTes__userI__1DE57479">
+          <End Role="Users" Type="QuizDBModel.Store.Users" Multiplicity="0..1" />
+          <End Role="PassedTest" Type="QuizDBModel.Store.PassedTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PassedTest">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__testI__1273C1CD">
+          <End Role="Tests" Type="QuizDBModel.Store.Tests" Multiplicity="0..1" />
+          <End Role="Questions" Type="QuizDBModel.Store.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Variants__questi__15502E78">
+          <End Role="Questions" Type="QuizDBModel.Store.Questions" Multiplicity="0..1" />
+          <End Role="Variants" Type="QuizDBModel.Store.Variants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Variants">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuizDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuizDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="QuizDBModel.Answers" />
+          <EntitySet Name="PassedTest" EntityType="QuizDBModel.PassedTest" />
+          <EntitySet Name="Questions" EntityType="QuizDBModel.Questions" />
+          <EntitySet Name="Tests" EntityType="QuizDBModel.Tests" />
+          <EntitySet Name="Users" EntityType="QuizDBModel.Users" />
+          <EntitySet Name="Variants" EntityType="QuizDBModel.Variants" />
+          <AssociationSet Name="FK__Answers__variant__182C9B23" Association="QuizDBModel.FK__Answers__variant__182C9B23">
+            <End Role="Variants" EntitySet="Variants" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PassedTes__testI__1CF15040" Association="QuizDBModel.FK__PassedTes__testI__1CF15040">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="PassedTest" EntitySet="PassedTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PassedTes__userI__1DE57479" Association="QuizDBModel.FK__PassedTes__userI__1DE57479">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PassedTest" EntitySet="PassedTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Questions__testI__1273C1CD" Association="QuizDBModel.FK__Questions__testI__1273C1CD">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Variants__questi__15502E78" Association="QuizDBModel.FK__Variants__questi__15502E78">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Variants" EntitySet="Variants" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="questionId" Type="Int32" />
+          <Property Name="variantId" Type="Int32" />
+          <NavigationProperty Name="Variants" Relationship="QuizDBModel.FK__Answers__variant__182C9B23" FromRole="Answers" ToRole="Variants" />
+        </EntityType>
+        <EntityType Name="PassedTest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="testId" Type="Int32" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="score" Type="Int32" />
+          <NavigationProperty Name="Tests" Relationship="QuizDBModel.FK__PassedTes__testI__1CF15040" FromRole="PassedTest" ToRole="Tests" />
+          <NavigationProperty Name="Users" Relationship="QuizDBModel.FK__PassedTes__userI__1DE57479" FromRole="PassedTest" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="testId" Type="Int32" />
+          <Property Name="question" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="question_type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tests" Relationship="QuizDBModel.FK__Questions__testI__1273C1CD" FromRole="Questions" ToRole="Tests" />
+          <NavigationProperty Name="Variants" Relationship="QuizDBModel.FK__Variants__questi__15502E78" FromRole="Questions" ToRole="Variants" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PassedTest" Relationship="QuizDBModel.FK__PassedTes__testI__1CF15040" FromRole="Tests" ToRole="PassedTest" />
+          <NavigationProperty Name="Questions" Relationship="QuizDBModel.FK__Questions__testI__1273C1CD" FromRole="Tests" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="last_name" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="user_login" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="user_pass" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PassedTest" Relationship="QuizDBModel.FK__PassedTes__userI__1DE57479" FromRole="Users" ToRole="PassedTest" />
+        </EntityType>
+        <EntityType Name="Variants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="variant" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="questionId" Type="Int32" />
+          <Property Name="imgPath" Type="String" MaxLength="350" Unicode="false" FixedLength="false" />
+          <Property Name="variant_type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Answers" Relationship="QuizDBModel.FK__Answers__variant__182C9B23" FromRole="Variants" ToRole="Answers" />
+          <NavigationProperty Name="Questions" Relationship="QuizDBModel.FK__Variants__questi__15502E78" FromRole="Variants" ToRole="Questions" />
+        </EntityType>
+        <Association Name="FK__Answers__variant__182C9B23">
+          <End Role="Variants" Type="QuizDBModel.Variants" Multiplicity="0..1" />
+          <End Role="Answers" Type="QuizDBModel.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="variantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PassedTes__testI__1CF15040">
+          <End Role="Tests" Type="QuizDBModel.Tests" Multiplicity="0..1" />
+          <End Role="PassedTest" Type="QuizDBModel.PassedTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PassedTest">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PassedTes__userI__1DE57479">
+          <End Role="Users" Type="QuizDBModel.Users" Multiplicity="0..1" />
+          <End Role="PassedTest" Type="QuizDBModel.PassedTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PassedTest">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Questions__testI__1273C1CD">
+          <End Role="Tests" Type="QuizDBModel.Tests" Multiplicity="0..1" />
+          <End Role="Questions" Type="QuizDBModel.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="testId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Variants__questi__15502E78">
+          <End Role="Questions" Type="QuizDBModel.Questions" Multiplicity="0..1" />
+          <End Role="Variants" Type="QuizDBModel.Variants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Variants">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuizDBModelStoreContainer" CdmEntityContainer="QuizDBEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="QuizDBModel.Answers">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="variantId" ColumnName="variantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassedTest">
+            <EntityTypeMapping TypeName="QuizDBModel.PassedTest">
+              <MappingFragment StoreEntitySet="PassedTest">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="testId" ColumnName="testId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="score" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="QuizDBModel.Questions">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="testId" ColumnName="testId" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="question_type" ColumnName="question_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="QuizDBModel.Tests">
+              <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QuizDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="user_login" ColumnName="user_login" />
+                <ScalarProperty Name="user_pass" ColumnName="user_pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variants">
+            <EntityTypeMapping TypeName="QuizDBModel.Variants">
+              <MappingFragment StoreEntitySet="Variants">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="variant" ColumnName="variant" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="imgPath" ColumnName="imgPath" />
+                <ScalarProperty Name="variant_type" ColumnName="variant_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

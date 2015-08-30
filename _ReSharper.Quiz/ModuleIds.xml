@@ -1,0 +1,5 @@
+<Modules>
+  <Module PersistentId="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E" ModuleId="Quiz" />
+  <Module PersistentId="F760996C-FA85-4A64-9B6B-0A45177F893D" ModuleId="QuizMaker" />
+  <Module PersistentId="FF53F387-5441-45A0-8FF6-D7B340107E45" ModuleId="Quiz.Service" />
+</Modules>

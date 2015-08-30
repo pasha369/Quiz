@@ -1,0 +1,14 @@
+2015/08/30-16:44:31.544 a14 Recovering log #96
+2015/08/30-16:44:31.544 a14 Level-0 table #98: started
+2015/08/30-16:44:31.719 a14 Level-0 table #98: 14202 bytes OK
+2015/08/30-16:44:31.783 a14 Delete type=0 #96
+2015/08/30-16:44:31.784 a14 Delete type=3 #94
+2015/08/30-16:44:31.784 a3c Compacting 4@0 + 1@1 files
+2015/08/30-16:44:31.849 a3c Generated table #100: 426 keys, 42315 bytes
+2015/08/30-16:44:31.849 a3c Compacted 4@0 + 1@1 files => 42315 bytes
+2015/08/30-16:44:31.881 a3c Delete type=2 #87
+2015/08/30-16:44:31.882 a3c Delete type=2 #89
+2015/08/30-16:44:31.882 a3c Delete type=2 #92
+2015/08/30-16:44:31.882 a3c Delete type=2 #95
+2015/08/30-16:44:31.883 a3c Delete type=2 #98
+2015/08/30-16:44:31.884 a3c compacted to: files[ 0 1 0 0 0 0 0 ]

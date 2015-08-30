@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d0d775ba-0c18-423d-bd68-f63d6a460513" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:10000/Quiz" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Quiz.xsd" MetadataType="Schema" ID="985d085c-b24e-42a6-828a-bbe9347078a3" SourceId="1" SourceUrl="http://localhost:10000/Quiz?xsd=xsd2" />
+    <MetadataFile FileName="Quiz.disco" MetadataType="Disco" ID="a24058d6-e459-43f6-8f5f-4ffe57e9d4e7" SourceId="1" SourceUrl="http://localhost:10000/Quiz?disco" />
+    <MetadataFile FileName="Quiz1.xsd" MetadataType="Schema" ID="0d1fa652-fe5f-4ccc-85d4-0d4a99b3c0cc" SourceId="1" SourceUrl="http://localhost:10000/Quiz?xsd=xsd3" />
+    <MetadataFile FileName="Quiz2.xsd" MetadataType="Schema" ID="e20171c7-421f-484e-b9d6-8d38c2190aef" SourceId="1" SourceUrl="http://localhost:10000/Quiz?xsd=xsd1" />
+    <MetadataFile FileName="Service.wsdl" MetadataType="Wsdl" ID="2d5074ff-d6a2-46f7-9728-49d90d38b6e1" SourceId="1" SourceUrl="http://localhost:10000/Quiz?wsdl" />
+    <MetadataFile FileName="Quiz3.xsd" MetadataType="Schema" ID="70f5f4dd-e0d8-4c02-aeb1-cb79d30fa1aa" SourceId="1" SourceUrl="http://localhost:10000/Quiz?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
