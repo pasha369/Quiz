@@ -10,7 +10,8 @@ using QuizMaker.Models;
 namespace Quiz.ViewModels
 {
     /// <summary>
-    /// 
+    /// View model for UserProfileView
+    /// Contains available test, passed tests and info about user.
     /// </summary>
     public class UserProfileViewModel : ObservableObject
     {

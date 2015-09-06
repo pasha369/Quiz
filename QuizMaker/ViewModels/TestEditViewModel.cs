@@ -26,6 +26,9 @@ namespace QuizMaker.ViewModels
         private ObservableCollection<QuestionModel> _testQuestions;
         private Tests _currentTest;
 
+        private ICommand _addMultipleQ;
+        private ICommand _addSingleQ;
+
         private ICommand _saveQuestionCmd;
         private ICommand _delQuestionCmd;
 
@@ -41,81 +44,6 @@ namespace QuizMaker.ViewModels
             _currentQuestion = new QuestionModel();
             _testQuestions = new ObservableCollection<QuestionModel>();
 
-        }
-        public ICommand DelQuestionCmd
-        {
-            get
-            {
-                if (_delQuestionCmd == null)
-                {
-                    _delQuestionCmd = new RelayCommand(param => DeleteQuestion());
-                }
-                return _delQuestionCmd;
-            }
-        }
-        public ICommand SaveQuestionCmd
-        {
-            get
-            {
-                if (_saveQuestionCmd == null)
-                {
-                    _saveQuestionCmd = new RelayCommand(param => SaveQuestion(),
-                                                        param => (CurrentQuestion != null));
-                }
-                return _saveQuestionCmd;
-            }
-        }
-        public ICommand SaveTestCmd
-        {
-            get
-            {
-                if (_saveTestCmd == null)
-                {
-                    return _saveTestCmd = new RelayCommand(param => SaveTest());
-                }
-                return _saveTestCmd;
-            }
-        }
-        public ICommand AddVariantCmd
-        {
-            get
-            {
-                if (_addVariantCmd == null)
-                {
-                    return _addVariantCmd = new RelayCommand(param => AddVariant());
-                }
-                return _addVariantCmd;
-            }
-        }
-        public ICommand AddVariantImgCmd
-        {
-            get
-            {
-                if (_addVariantImgCmd == null)
-                {
-                    return _addVariantImgCmd = new RelayCommand(param => AddVariantImage());
-                }
-                return _addVariantImgCmd;
-            }
-        }
-        public ICommand DelVariantCmd
-        {
-            get
-            {
-                if (_delVariantCmd == null)
-                {
-                    _delVariantCmd = new RelayCommand(parm => DeleteVariant());
-                }
-                return _delVariantCmd;
-            }
-        }
-
-
-
-        private void AddVariantImage()
-        {
-            CurrentQuestion.Variants[0].Type = "Image";
-            CurrentQuestion.Variants[0].ImageUri = UploadImg();
         }
 
         public ObservableCollection<QuestionModel> TestQuestions
@@ -152,11 +80,140 @@ namespace QuizMaker.ViewModels
             }
         }
 
+        #region Commands
+        public ICommand AddMultipleQ
+        {
+            get
+            {
+                if(_addMultipleQ == null)
+                {
+                    _addMultipleQ = new RelayCommand(param => AddMultipleQuestion());
+                }
+                return _addMultipleQ;
+            }
+        }
+        public ICommand AddSingleQ
+        {
+            get
+            {
+                if (_addSingleQ == null)
+                {
+                    _addSingleQ = new RelayCommand(param => AddSingleQuestion());
+                }
+                return _addSingleQ;
+            }
+        }
 
+        public ICommand DelQuestionCmd
+        {
+            get
+            {
+                if (_delQuestionCmd == null)
+                {
+                    _delQuestionCmd = new RelayCommand(param => DeleteQuestion());
+                }
+                return _delQuestionCmd;
+            }
+        }
+        public ICommand SaveQuestionCmd
+        {
+            get
+            {
+                if (_saveQuestionCmd == null)
+                {
+                    _saveQuestionCmd = new RelayCommand(param => SaveQuestion(),
+                                                        param => (CurrentQuestion != null));
+                }
+                return _saveQuestionCmd;
+            }
+        }
+
+        public ICommand SaveTestCmd
+        {
+            get
+            {
+                if (_saveTestCmd == null)
+                {
+                    return _saveTestCmd = new RelayCommand(param => SaveTest());
+                }
+                return _saveTestCmd;
+            }
+        }
+
+        public ICommand AddVariantCmd
+        {
+            get
+            {
+                if (_addVariantCmd == null)
+                {
+                    return _addVariantCmd = new RelayCommand(param => AddVariant());
+                }
+                return _addVariantCmd;
+            }
+        }
+        public ICommand AddVariantImgCmd
+        {
+            get
+            {
+                if (_addVariantImgCmd == null)
+                {
+                    return _addVariantImgCmd = new RelayCommand(param => AddVariantImage());
+                }
+                return _addVariantImgCmd;
+            }
+        }
+        public ICommand DelVariantCmd
+        {
+            get
+            {
+                if (_delVariantCmd == null)
+                {
+                    _delVariantCmd = new RelayCommand(parm => DeleteVariant());
+                }
+                return _delVariantCmd;
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// Add question with multiple correct variants
+        /// </summary>
+        private void AddMultipleQuestion()
+        {
+            CurrentQuestion = new QuestionModel();
+            CurrentQuestion.IsMultiple = "true";
+        }
+
+        /// <summary>
+        /// Add question with single correct variant
+        /// </summary>
+        private void AddSingleQuestion()
+        {
+            CurrentQuestion = new QuestionModel();
+            CurrentQuestion.IsMultiple = "false";
+        }
+
+        /// <summary>
+        /// Add image to selected variant
+        /// </summary>
+        private void AddVariantImage()
+        {
+            CurrentQuestion.Variants[0].Type = "Image";
+            CurrentQuestion.Variants
+                .First(v => v == CurrentVariant)
+                .ImageUri = UploadImg();
+        }
+        /// <summary>
+        /// Add new variant to current question variants
+        /// </summary>
         private void AddVariant()
         {
             CurrentQuestion.Variants.Add(new VariantModel());
         }
+
+        /// <summary>
+        /// Delete selected variant
+        /// </summary>
         private void DeleteVariant()
         {
             if(CurrentVariant != null)
@@ -164,6 +221,10 @@ namespace QuizMaker.ViewModels
                 CurrentQuestion.Variants.Remove(CurrentVariant);
             }
         }
+
+        /// <summary>
+        /// Save test to database
+        /// </summary>
         private void SaveTest()
         {
             try
@@ -226,7 +287,9 @@ namespace QuizMaker.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Delete selected question
+        /// </summary>
         private void DeleteQuestion()
         {
             if (TestQuestions.Contains(CurrentQuestion))
@@ -234,6 +297,10 @@ namespace QuizMaker.ViewModels
                 TestQuestions.Remove(CurrentQuestion);
             }
         }
+        
+        /// <summary>
+        /// Save current question
+        /// </summary>
         private void SaveQuestion()
         {
             if (TestQuestions.Contains(CurrentQuestion))
@@ -246,7 +313,10 @@ namespace QuizMaker.ViewModels
                 CurrentQuestion = new QuestionModel();
             }
         }
-
+        /// <summary>
+        /// Upload image to WCF service
+        /// </summary>
+        /// <returns></returns>
         private string UploadImg()
         {
             string path = string.Empty;

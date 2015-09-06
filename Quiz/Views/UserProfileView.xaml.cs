@@ -30,7 +30,11 @@ namespace Quiz.Views
             InitializeComponent();
 
         }
-
+        /// <summary>
+        /// Navigate to selected test
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTakeTest_Click(object sender, RoutedEventArgs e)
         {
             var view = new TestProcessView(viewModel.SelectedTest);

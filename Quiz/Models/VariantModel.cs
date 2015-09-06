@@ -33,7 +33,8 @@ namespace QuizMaker.Models
             get { return _imageUri; }
             set
             {
-
+                // Load image from service
+                // to current client.
                 _imageUri = value;
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();

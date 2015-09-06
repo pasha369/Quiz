@@ -2,6 +2,9 @@ using QuizMaker.Models;
 
 namespace Quiz.Models
 {
+    /// <summary>
+    /// Score model
+    /// </summary>
     public class ScoreModel:ObservableObject
     {
         private string _type = string.Empty;

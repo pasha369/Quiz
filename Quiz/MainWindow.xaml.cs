@@ -32,9 +32,6 @@ namespace Quiz
             this.Close();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }

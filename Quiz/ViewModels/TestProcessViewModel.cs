@@ -109,7 +109,9 @@ namespace Quiz.ViewModels
             get { return _questions; }
         }
 
-
+        /// <summary>
+        /// Decrement current index and load previous question by index
+        /// </summary>
         private void LoadPrevQuestion()
         {
             if (_idx > 0)
@@ -118,7 +120,9 @@ namespace Quiz.ViewModels
                 LoadQuestion(_idx);
             }
         }
-
+        /// <summary>
+        /// Increment current index and load next question by index
+        /// </summary>
         private void LoadNextQuestion()
         {
             if (_idx < _questions.Count - 1)
@@ -127,7 +131,10 @@ namespace Quiz.ViewModels
                 LoadQuestion(_idx);
             }
         }
-
+        /// <summary>
+        /// Load question from list
+        /// </summary>
+        /// <param name="idx"></param>
         private void LoadQuestion(int idx)
         {
             CurrentQuestion = _questions[idx];

@@ -7,20 +7,59 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:Models="clr-namespace:QuizMaker.Models"
                       xmlns:DatabaseEntity="clr-namespace:QuizMaker.Models.DatabaseEntity" mc:Ignorable="d"
-                      Title="TestEdit" Height="400" Width="600">
+                      Title="TestEdit" Height="400" Width="600"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      WindowState="Maximized"
+                      WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <DataTemplate x:Key="MultipleChoice" DataType="Models:VariantModel">
+            <CheckBox Margin="5"    IsChecked="{Binding IsCorrect}" />
+        </DataTemplate>
+        <DataTemplate x:Key="SingleChoice" DataType="Models:VariantModel">
+            <RadioButton Margin="5"    IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+        </DataTemplate>
+    </Window.Resources>
 
-        <Grid>
-        <StackPanel>
-           
-            <Button Command="{Binding SaveTestCmd}">Save test</Button>
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <ToolBarTray>
+                    <ToolBar>
+                        <Button Command="{Binding SaveTestCmd}">
+                            <StackPanel>
+                                <Image Source="..\Resources\Images\save.ico" Width="25" Height="25"/>
+                                <TextBlock HorizontalAlignment="Center">save</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </ToolBar>
+
+                    <ToolBar>
+
+                        <Button Command="{Binding AddSingleQ}">
+                            <StackPanel>
+                                <Image Source="..\Resources\Images\single_q.png" Width="25" Height="25"/>
+                                <TextBlock HorizontalAlignment="Center">single</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Command="{Binding AddMultipleQ}">
+                            <StackPanel>
+                                <Image Source="..\Resources\Images\multiple_q.png" Width="25" Height="25"/>
+                                <TextBlock HorizontalAlignment="Center">Multiple</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+            </DockPanel>
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <!--Left side-->
                 <GroupBox Header="Questions">
@@ -36,17 +75,13 @@
                         </Grid.ColumnDefinitions>
                         <ListView Grid.Row="0" Grid.ColumnSpan="3" 
                                   ItemsSource="{Binding Path=TestQuestions, UpdateSourceTrigger=PropertyChanged}"
-                                  SelectedItem="{Binding CurrentQuestion}">
-
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn
-                                            DisplayMemberBinding="{Binding QuestionText}"
-                                            >
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-
+                                  SelectedItem="{Binding CurrentQuestion}"
+                                  BorderThickness="0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate DataType="Models:QuestionModel">
+                                    <TextBlock Text="{Binding QuestionText}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
 
                         <Button Grid.Row="1"  Margin="10" Command="{Binding SaveQuestionCmd}">+</Button>
@@ -61,13 +96,19 @@
                 <!--Left side-->
 
                 <!--Right side-->
-                <StackPanel Grid.Column="1">
-
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!--Question text-->
                     <GroupBox Header="Question">
                         <TextBox Text="{Binding CurrentQuestion.QuestionText, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
                     </GroupBox>
-                    <Grid>
+                    <!--Question variants-->
+                    <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -78,40 +119,58 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <GroupBox Header="Answer" Grid.Column="0">
-                            
+                        <GroupBox Header="Answer" Grid.Column="0" Grid.RowSpan="3">
+
                             <ListView ItemsSource="{Binding Path=CurrentQuestion.Variants, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding CurrentVariant}">
                                 <ListView.BorderThickness>0</ListView.BorderThickness>
                                 <ListView.ItemTemplate>
                                     <DataTemplate DataType="Models:VariantModel">
                                         <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-
-                                            <RadioButton Margin="5"    IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
-                                            <TextBox Margin="5"   Grid.Column="1" Text="{Binding VariantText}"/>
+                                            <ContentControl Content="{Binding}">
+                                                <ContentControl.Style>
+                                                    <Style TargetType="{x:Type ContentControl}">
+                                                        <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=SingleChoice}"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding RelativeSource=
+			                                                {RelativeSource FindAncestor, 
+			                                                AncestorType={x:Type ListView}}, 
+			                                                Path= DataContext.CurrentQuestion.IsMultiple}"  Value="true">
+                                                                <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=MultipleChoice}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </ContentControl.Style>
+                                            </ContentControl>
+                                            <TextBox Margin="5" Grid.Column="1" Text="{Binding VariantText}"/>
                                             <Button Grid.Column="2" 
                                                     Command="{Binding RelativeSource=
 			                                                {RelativeSource FindAncestor, 
 			                                                AncestorType={x:Type ListView}}, 
 			                                                Path= DataContext.AddVariantImgCmd}" 
                                                     CommandParameter="{Binding}"
-                                                    Width="10" Height="10"/>
+                                                    Width="35" Height="35">
+                                                <Button.Content>
+                                                    <Image Source="..\Resources\Images\add_file.png"/>
+                                                </Button.Content>
+                                            </Button>
+                                            <Image Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding ImageUri}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <!--<ScrollViewer  Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" Height="140" CanContentScroll="True">
-                                <StackPanel Name="stackVariants">
-                                </StackPanel>
-                            </ScrollViewer>-->
                         </GroupBox>
 
-                        <StackPanel Grid.Column="1">
+                        <StackPanel Grid.Column="1" Grid.RowSpan="3">
                             <Button  Width="100" Margin="5" Name="btnAddChoice" Command="{Binding AddVariantCmd}">Add choice</Button>
                             <Button  Width="100" Margin="5" Name="btnDeleteChoice"
                                      Command="{Binding DelVariantCmd}">Delete choice</Button>
@@ -119,14 +178,17 @@
                             <Button  Width="100" Margin="5" Name="btnDown">Move down</Button>
                         </StackPanel>
                     </Grid>
-
-
-                </StackPanel>
+                    <!--Question score-->
+                    <DockPanel Grid.Row="2">
+                        <TextBlock Padding="5">Score: </TextBlock>
+                        <Controls:NumericUpDown Minimum="1" Value="{Binding CurrentQuestion.Score}"/>
+                    </DockPanel>
+                </Grid>
 
 
             </Grid>
 
-        </StackPanel>
+        </DockPanel>
     </Grid>
 
 </Controls:MetroWindow>

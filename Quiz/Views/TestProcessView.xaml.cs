@@ -31,7 +31,11 @@ namespace Quiz.Views
             InitializeComponent();
             this.DataContext = viewModel;
         }
-
+        /// <summary>
+        /// Finish test and move to score view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFinish_Click(object sender, RoutedEventArgs e)
         {
             var view = new TestScoreView(viewModel.CurrentTest, viewModel.Questions);

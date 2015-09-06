@@ -25,10 +25,15 @@ namespace Quiz.Views
             InitializeComponent();
 
         }
-
+        /// <summary>
+        /// Check if current user exist in database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSignIn_Click(object sender, RoutedEventArgs e)
         {
             AuthClient client = new AuthClient();
+
             ITestOperation testClient = new TestOperationClient();
             if (client.SignIn(txtLogin.Text, txtPassword.Text))
             {
@@ -38,7 +43,11 @@ namespace Quiz.Views
                 this.Close();
             }
         }
-
+        /// <summary>
+        /// Registration new user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();

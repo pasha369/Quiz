@@ -18,19 +18,30 @@ namespace QuizMaker.Models
         private string _questionText;
         private ObservableCollection<VariantModel> _variants;
         private int _answerId;
-        private string _taskStatus;
+        private string _isMultiple;
+        private int _score;
 
-        public string TaskStatus
+        public int Score
         {
-            set { _taskStatus = value;
-            OnPropertyChanged("TaskStatus");
+            get { return _score; }
+            set
+            {
+                _score = value;
+                OnPropertyChanged("Score");
             }
-            get { return _taskStatus; }
+        }
+        public string IsMultiple
+        {
+            get { return _isMultiple; }
+            set
+            {
+                _isMultiple = value;
+                OnPropertyChanged("IsMultiple");
+            }
         }
 
         public QuestionModel()
         {
-            TaskStatus = "Closed";
             _variants = new ObservableCollection<VariantModel>();
         }
 
@@ -59,7 +70,8 @@ namespace QuizMaker.Models
             {
                 return _variants;
             }
-            set { 
+            set
+            {
                 _variants = value;
                 OnPropertyChanged("Variants");
             }
@@ -67,7 +79,8 @@ namespace QuizMaker.Models
         public int AnswerId
         {
             get { return _answerId; }
-            set { 
+            set
+            {
                 _answerId = value;
                 OnPropertyChanged("AnswerId");
             }

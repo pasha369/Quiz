@@ -43,7 +43,7 @@
                         <Image Source="Resources/Images/add.png" Width="50"/>
                     </StackPanel>
                 </Button>
-                <Button Grid.Column="1" Width="100" Height="100" Style="{DynamicResource MetroCircleButtonStyle}" Command="{Binding RunTestCmd}">button</Button>
+                <Button Grid.Column="1" Width="100" Height="100" Style="{DynamicResource MetroCircleButtonStyle}">button</Button>
                 <Button Grid.Column="2" Width="100" Height="100" Style="{DynamicResource MetroCircleButtonStyle}">button</Button>
 
             </Grid>

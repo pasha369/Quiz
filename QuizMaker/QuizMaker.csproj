@@ -122,22 +122,11 @@
     <Compile Include="Utils\QuestionBuilder\Abstract\IQuestionBuilder.cs" />
     <Compile Include="Utils\QuestionBuilder\Concrete\QuestionCreator.cs" />
     <Compile Include="Utils\QuestionBuilder\Concrete\TextQuestionBuilder.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\StartPageViewModel.cs" />
     <Compile Include="ViewModels\TestEditViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="Views\TestEdit.xaml.cs">
       <DependentUpon>TestEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WcfService\IFileTransfer.cs" />
-    <Compile Include="WcfService\Model\ITestModel.cs" />
-    <Compile Include="WcfService\Model\Question.cs" />
-    <Compile Include="WcfService\Model\Test.cs" />
-    <Compile Include="WcfService\Model\Variant.cs" />
-    <Compile Include="WcfService\Service.cs" />
-    <Compile Include="WcfService\IAuth.cs" />
-    <Compile Include="WcfService\ITestOperation.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -249,6 +238,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\single_q.png" />
+    <Resource Include="Resources\Images\multiple_q.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\add_file.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

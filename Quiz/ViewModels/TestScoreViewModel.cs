@@ -31,7 +31,11 @@ namespace Quiz.ViewModels
             var client = new TestOperationClient();
             client.PassTest(1, test.Id, score);
         }
-
+        /// <summary>
+        /// Calculate current test result 
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <returns></returns>
         private double CalcResult(List<QuestionModel> questions)
         {
             var client = new TestOperationClient();

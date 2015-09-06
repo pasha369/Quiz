@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Quiz.Service.WcfService.Model
 {
     [DataContract]
-    public class Test: ITestModel
+    public class Test
     {
         [DataMember]
         public int Id;

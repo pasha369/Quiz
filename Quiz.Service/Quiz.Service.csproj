@@ -93,14 +93,15 @@
     <Compile Include="WcfService\Abstract\ITestOperation.cs" />
     <Compile Include="WcfService\Model\TransferedImage.cs" />
     <Compile Include="WcfService\Model\Answer.cs" />
-    <Compile Include="WcfService\Model\ITestModel.cs" />
     <Compile Include="WcfService\Model\Question.cs" />
     <Compile Include="WcfService\Model\Test.cs" />
     <Compile Include="WcfService\Model\Variant.cs" />
     <Compile Include="WcfService\Service.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="model\DatabaseEntity\QuizModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QuizModel.Designer.cs</LastGenOutput>

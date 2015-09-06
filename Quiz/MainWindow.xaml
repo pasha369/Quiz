@@ -3,12 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <StackPanel Width="200" VerticalAlignment="Center">
-            <TextBox Name="txtLogin"></TextBox>
-            <TextBox Name="txtPassword"></TextBox>
-            <Button Click="btnLogin_Click">Sign In</Button>
-            <TextBlock Name="txtResult"/>
-        </StackPanel>
+       
         
     </Grid>
 </Window>

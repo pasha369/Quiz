@@ -10,6 +10,9 @@ using QuizMaker.WcfService;
 
 namespace QuizMaker.ViewModels
 {
+    /// <summary>
+    /// View model for start page test
+    /// </summary>
     class TestViewModel : ObservableObject
     {
         private ObservableCollection<Tests> _tests;
@@ -37,25 +40,6 @@ namespace QuizMaker.ViewModels
                 }
             }
         }
-        public ICommand RunTestCmd
-        {
-            get
-            {
-                if(_runTestCmd == null)
-                {
-                    _runTestCmd = new RelayCommand(param => RunTest());
-                }
-                return _runTestCmd;
-            }
-        }
-        /// <summary>
-        /// WCF for running test
-        /// </summary>
-        public void RunTest()
-        {
-            //TODO: implement WCF server
-            ServiceHost sh = new ServiceHost(typeof(Service));
-            sh.Open();
-        }
+
     }
 }
