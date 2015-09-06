@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Quiz.QuizServiceReference;
 using Quiz.ViewModels;
+using QuizMaker.Models;
 
 namespace Quiz.Views
 {
@@ -20,11 +22,22 @@ namespace Quiz.Views
     /// </summary>
     public partial class TestProcessView 
     {
-        public TestProcessView()
+        private TestProcessViewModel viewModel;
+
+        public TestProcessView(Test selectedTest)
         {
-            var viewModel = new TestProcessViewModel();
+            viewModel = new TestProcessViewModel(selectedTest);
+
             InitializeComponent();
             this.DataContext = viewModel;
+        }
+
+        private void btnFinish_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new TestScoreView(viewModel.CurrentTest, viewModel.Questions);
+            view.Show();
+
+            this.Close();
         }
     }
 }

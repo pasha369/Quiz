@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Quiz.QuizServiceReference;
 using QuizMaker.Commands;
@@ -12,6 +13,9 @@ using QuizMaker.Models;
 
 namespace Quiz.ViewModels
 {
+    /// <summary>
+    /// View model for TestProcessView
+    /// </summary>
     class TestProcessViewModel : ObservableObject
     {
         private QuestionModel _currentQuestion;
@@ -20,12 +24,16 @@ namespace Quiz.ViewModels
 
         private ICommand _nextCmd;
         private ICommand _prevCmd;
+        private Test _currentTest;
 
-        public TestProcessViewModel()
+        public TestProcessViewModel(Test selectedTest)
         {
-            _questions = new List<QuestionModel>();
             TestOperationClient client = new TestOperationClient();
-            InitQuestions(client.GetTest().Questions.ToList());
+
+            _questions = new List<QuestionModel>();
+            _currentTest = client.GetTest(selectedTest.Id);
+
+            InitQuestions(_currentTest.Questions.ToList());
             LoadQuestion(_idx);
         }
         private void InitQuestions(List<Question> questions)
@@ -33,22 +41,27 @@ namespace Quiz.ViewModels
             foreach (var questionItem in questions)
             {
                 QuestionModel questionModel = new QuestionModel();
+                questionModel.QuestionId = questionItem.Id;
                 questionModel.QuestionText = questionItem.QuestionText;
                 foreach (var variantItem in questionItem.Variants)
                 {
                     var variant = new VariantModel();
-                    if(variantItem.Type == "Image")
+                    if (variantItem.Type == "Image")
                     {
                         FileTransferClient fileTransfer = new FileTransferClient();
 
                         TransferedImage img = fileTransfer.DownloadImage(variantItem.ImageUri);
                         var path = SaveImage(img.data, img.Filename);
                         variant.ImageUri = path;
+                        variant.IsMultiple = "False";
                         variant.Type = variantItem.Type;
+                        variant.VariantId = variantItem.Id;
                     }
                     else
                     {
-                        variant.VariantText = variantItem.VariantText;                    
+                        variant.VariantText = variantItem.VariantText;
+                        variant.Type = variantItem.Type;
+                        variant.VariantId = variantItem.Id;
                     }
                     questionModel.Variants.Add(variant);
                 }
@@ -56,6 +69,10 @@ namespace Quiz.ViewModels
             }
         }
 
+        public Test CurrentTest
+        {
+            get { return _currentTest; }
+        }
         public ICommand PrevCmd
         {
             get
@@ -67,8 +84,6 @@ namespace Quiz.ViewModels
                 return _prevCmd;
             }
         }
-
-
         public ICommand NextCmd
         {
             get
@@ -80,6 +95,20 @@ namespace Quiz.ViewModels
                 return _nextCmd;
             }
         }
+        public QuestionModel CurrentQuestion
+        {
+            get { return _currentQuestion; }
+            set
+            {
+                _currentQuestion = value;
+                OnPropertyChanged("CurrentQuestion");
+            }
+        }
+        public List<QuestionModel> Questions
+        {
+            get { return _questions; }
+        }
+
 
         private void LoadPrevQuestion()
         {
@@ -92,20 +121,10 @@ namespace Quiz.ViewModels
 
         private void LoadNextQuestion()
         {
-            if (_idx < _questions.Count-1)
+            if (_idx < _questions.Count - 1)
             {
                 _idx++;
                 LoadQuestion(_idx);
-            }
-        }
-
-        public QuestionModel CurrentQuestion
-        {
-            get { return _currentQuestion; }
-            set
-            {
-                _currentQuestion = value;
-                OnPropertyChanged("CurrentQuestion");
             }
         }
 
@@ -113,7 +132,8 @@ namespace Quiz.ViewModels
         {
             CurrentQuestion = _questions[idx];
         }
-        private  string SaveImage(byte[] data, string filename)
+
+        private string SaveImage(byte[] data, string filename)
         {
 
             using (var ms = new MemoryStream(data))

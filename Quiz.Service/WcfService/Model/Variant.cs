@@ -13,5 +13,6 @@ namespace Quiz.Service.WcfService.Model
         public string Type;
         [DataMember]
         public string ImageUri;
+
     }
 }

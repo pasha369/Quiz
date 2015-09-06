@@ -1,0 +1,27 @@
+﻿<Controls:MetroWindow x:Class="Quiz.Views.TestScoreView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        xmlns:MetroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="Score" Height="500" Width="500"
+                      ResizeMode="NoResize"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+
+                      WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <MetroChart:PieChart ChartSubTitle="Answers" 
+                ChartTitle="Test result">
+            <MetroChart:PieChart.Series>
+                <MetroChart:ChartSeries DisplayMember="Type"
+                            ItemsSource="{Binding Path=Scores}"
+                            Width="200"
+                            ValueMember="Number" />
+            </MetroChart:PieChart.Series>
+        </MetroChart:PieChart>
+        
+    </Grid>
+    </Controls:MetroWindow>
+

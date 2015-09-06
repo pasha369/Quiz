@@ -15,6 +15,7 @@ namespace QuizMaker.Models
         private bool _isCorrect;
         private BitmapImage _imgSrc;
         private string _type;
+        private string _isMultiple;
 
         public string Type
         {
@@ -83,6 +84,16 @@ namespace QuizMaker.Models
             {
                 _isCorrect = value;
                 OnPropertyChanged("IsCorrect");
+            }
+        }
+
+        public string IsMultiple
+        {
+            get { return _isMultiple; }
+            set
+            {
+                _isMultiple = value;
+                OnPropertyChanged("IsMultiple");
             }
         }
     }

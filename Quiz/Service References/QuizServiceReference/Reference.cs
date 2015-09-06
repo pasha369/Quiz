@@ -15,7 +15,7 @@ namespace Quiz.QuizServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Test", Namespace="http://schemas.datacontract.org/2004/07/QuizMaker.WcfService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Test", Namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model")]
     [System.SerializableAttribute()]
     public partial class Test : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -262,7 +262,84 @@ namespace Quiz.QuizServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TransferedImage", Namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Answer", Namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Answer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int questionIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> variantIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int questionId {
+            get {
+                return this.questionIdField;
+            }
+            set {
+                if ((this.questionIdField.Equals(value) != true)) {
+                    this.questionIdField = value;
+                    this.RaisePropertyChanged("questionId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> variantId {
+            get {
+                return this.variantIdField;
+            }
+            set {
+                if ((this.variantIdField.Equals(value) != true)) {
+                    this.variantIdField = value;
+                    this.RaisePropertyChanged("variantId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransferedImage", Namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model")]
     [System.SerializableAttribute()]
     public partial class TransferedImage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -387,10 +464,34 @@ namespace Quiz.QuizServiceReference {
     public interface ITestOperation {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetTest", ReplyAction="http://tempuri.org/ITestOperation/GetTestResponse")]
-        Quiz.QuizServiceReference.Test GetTest();
+        Quiz.QuizServiceReference.Test GetTest(int testId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetTest", ReplyAction="http://tempuri.org/ITestOperation/GetTestResponse")]
-        System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test> GetTestAsync();
+        System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test> GetTestAsync(int testId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetAnswers", ReplyAction="http://tempuri.org/ITestOperation/GetAnswersResponse")]
+        Quiz.QuizServiceReference.Answer[] GetAnswers(int questionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetAnswers", ReplyAction="http://tempuri.org/ITestOperation/GetAnswersResponse")]
+        System.Threading.Tasks.Task<Quiz.QuizServiceReference.Answer[]> GetAnswersAsync(int questionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetPassedTests", ReplyAction="http://tempuri.org/ITestOperation/GetPassedTestsResponse")]
+        Quiz.QuizServiceReference.Test[] GetPassedTests(int UserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetPassedTests", ReplyAction="http://tempuri.org/ITestOperation/GetPassedTestsResponse")]
+        System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test[]> GetPassedTestsAsync(int UserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetAvailableTests", ReplyAction="http://tempuri.org/ITestOperation/GetAvailableTestsResponse")]
+        Quiz.QuizServiceReference.Test[] GetAvailableTests(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/GetAvailableTests", ReplyAction="http://tempuri.org/ITestOperation/GetAvailableTestsResponse")]
+        System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test[]> GetAvailableTestsAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/PassTest", ReplyAction="http://tempuri.org/ITestOperation/PassTestResponse")]
+        void PassTest(int userId, int testId, double score);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestOperation/PassTest", ReplyAction="http://tempuri.org/ITestOperation/PassTestResponse")]
+        System.Threading.Tasks.Task PassTestAsync(int userId, int testId, double score);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -420,12 +521,44 @@ namespace Quiz.QuizServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public Quiz.QuizServiceReference.Test GetTest() {
-            return base.Channel.GetTest();
+        public Quiz.QuizServiceReference.Test GetTest(int testId) {
+            return base.Channel.GetTest(testId);
         }
         
-        public System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test> GetTestAsync() {
-            return base.Channel.GetTestAsync();
+        public System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test> GetTestAsync(int testId) {
+            return base.Channel.GetTestAsync(testId);
+        }
+        
+        public Quiz.QuizServiceReference.Answer[] GetAnswers(int questionId) {
+            return base.Channel.GetAnswers(questionId);
+        }
+        
+        public System.Threading.Tasks.Task<Quiz.QuizServiceReference.Answer[]> GetAnswersAsync(int questionId) {
+            return base.Channel.GetAnswersAsync(questionId);
+        }
+        
+        public Quiz.QuizServiceReference.Test[] GetPassedTests(int UserId) {
+            return base.Channel.GetPassedTests(UserId);
+        }
+        
+        public System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test[]> GetPassedTestsAsync(int UserId) {
+            return base.Channel.GetPassedTestsAsync(UserId);
+        }
+        
+        public Quiz.QuizServiceReference.Test[] GetAvailableTests(int userId) {
+            return base.Channel.GetAvailableTests(userId);
+        }
+        
+        public System.Threading.Tasks.Task<Quiz.QuizServiceReference.Test[]> GetAvailableTestsAsync(int userId) {
+            return base.Channel.GetAvailableTestsAsync(userId);
+        }
+        
+        public void PassTest(int userId, int testId, double score) {
+            base.Channel.PassTest(userId, testId, score);
+        }
+        
+        public System.Threading.Tasks.Task PassTestAsync(int userId, int testId, double score) {
+            return base.Channel.PassTestAsync(userId, testId, score);
         }
     }
     

@@ -34,13 +34,15 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <ListView Grid.Row="0" Grid.ColumnSpan="3" ItemsSource="{Binding Path=TestQuestions, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView Grid.Row="0" Grid.ColumnSpan="3" 
+                                  ItemsSource="{Binding Path=TestQuestions, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding CurrentQuestion}">
 
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn
                                             DisplayMemberBinding="{Binding QuestionText}"
-                                            Header = "Questions">
+                                            >
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
@@ -49,7 +51,8 @@
 
                         <Button Grid.Row="1"  Margin="10" Command="{Binding SaveQuestionCmd}">+</Button>
                         <Button Grid.Row="1" Grid.Column="1"  Margin="10">-</Button>
-                        <Button Grid.Row="1" Grid.Column="2"  Margin="10">x</Button>
+                        <Button Grid.Row="1" Grid.Column="2"  Margin="10"
+                                Command="{Binding DelQuestionCmd}">x</Button>
 
 
                     </Grid>
@@ -76,7 +79,9 @@
                         </Grid.ColumnDefinitions>
 
                         <GroupBox Header="Answer" Grid.Column="0">
-                            <ListView ItemsSource="{Binding Path=CurrentQuestion.Variants, UpdateSourceTrigger=PropertyChanged}">
+                            
+                            <ListView ItemsSource="{Binding Path=CurrentQuestion.Variants, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding CurrentVariant}">
                                 <ListView.BorderThickness>0</ListView.BorderThickness>
                                 <ListView.ItemTemplate>
                                     <DataTemplate DataType="Models:VariantModel">
@@ -108,7 +113,8 @@
 
                         <StackPanel Grid.Column="1">
                             <Button  Width="100" Margin="5" Name="btnAddChoice" Command="{Binding AddVariantCmd}">Add choice</Button>
-                            <Button  Width="100" Margin="5" Name="btnDeleteChoice">Delete choice</Button>
+                            <Button  Width="100" Margin="5" Name="btnDeleteChoice"
+                                     Command="{Binding DelVariantCmd}">Delete choice</Button>
                             <Button  Width="100" Margin="5" Name="btnUp">Move up</Button>
                             <Button  Width="100" Margin="5" Name="btnDown">Move down</Button>
                         </StackPanel>

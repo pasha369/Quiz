@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Quiz.Service.WcfService.Abstract;
 using Quiz.Service.WcfService.Model;
 using Quiz.Service.model.DatabaseEntity;
-using QuizMaker.WcfService.Model;
 
 namespace Quiz.Service.WcfService
 {
+    /// <summary>
+    /// WCF service for implement 
+    /// IAuth, ITestOperation, IFileTransfer operation
+    /// </summary>
     public class Service : IAuth, ITestOperation, IFileTransfer
     {
         public bool SignIn(string login, string password)
@@ -30,7 +36,7 @@ namespace Quiz.Service.WcfService
             throw new NotImplementedException();
         }
 
-        public Test GetTest()
+        public Test GetTest(int testId)
         {
             var test = new Test();
             using (var context = new QuizDBEntities())
@@ -42,6 +48,7 @@ namespace Quiz.Service.WcfService
                 test = tests
                     .Select(t => new Test
                                      {
+                                         Id = t.id,
                                          Name = t.name,
                                          Questions = questions
                                                             .Where(q => q.testId == t.id)
@@ -62,9 +69,95 @@ namespace Quiz.Service.WcfService
                                                                              })
                                                             .ToList()
                                      })
-                    .ToList()[1];
+                    .FirstOrDefault(t => t.Id == testId);
             }
             return test;
+        }
+
+        public List<Answer> GetAnswers(int questionId)
+        {
+            var lstAnswers = new List<Answer>();
+            using (var context = new QuizDBEntities())
+            {
+                lstAnswers = context.Answers
+                    .Where(a => a.questionId == questionId)
+                    .Select(a => new Answer()
+                                     {
+                                         id = a.id,
+                                         variantId = a.variantId
+                                     })
+                    .ToList();
+            }
+            return lstAnswers;
+        }
+
+        public List<Test> GetPassedTests(int UserId)
+        {
+            var test = new List<Test>();
+            using (var context = new QuizDBEntities())
+            {
+                var questions = context.Questions.ToArray();
+                var variants = context.Variants.ToArray();
+
+                var passedTestIdx = context.PassedTest.ToList()
+                    .Where(t => t.userId == UserId)
+                    .Select(t => t.testId).ToList();
+
+                test = passedTestIdx
+                    .Select(t => t != null ? GetTest(t.Value) : null)
+                    .ToList();
+            }
+            return test;
+        }
+
+        public List<Test> GetAvailableTests(int userId)
+        {
+            List<Test> test;
+            using (var context = new QuizDBEntities())
+            {
+                var passedTestIdx = context.PassedTest.ToList()
+                    .Where(t => t.userId == userId)
+                    .Select(t => t.testId).ToList();
+
+                test = context.Tests.ToArray()
+                    .Where(t => t != null && !passedTestIdx.Contains(t.id))
+                    .Select(t => GetTest(t.id))
+                    .ToList();
+            }
+
+            return test;
+        }
+
+        public void PassTest(int userId, int testId, double score)
+        {
+            using (var context = new QuizDBEntities())
+            {
+                var passedTest = new PassedTest();
+                if(context.PassedTest.Count() > 0)
+                {
+                    passedTest.id = context.PassedTest.ToList().Select(t => t.id).Max() + 1;
+                }
+                else
+                {
+                    passedTest.id = 0;                    
+                }
+                passedTest.testId = testId;
+                passedTest.userId = userId;
+                passedTest.score = (int) score;
+
+                
+                try
+                {
+                    context.PassedTest.Add(passedTest);
+                context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e); // or log to file, etc.
+                    throw; // re-throw the exception if you want it to continue up the stack
+                }
+            }
+
         }
 
         public string UploadFile(byte[] data, string filename)
@@ -83,12 +176,12 @@ namespace Quiz.Service.WcfService
                 }
                 catch (Exception ex)
                 {
-                    
+
                     Console.WriteLine(ex.Message);
                 }
                 return "";
             }
-            
+
         }
 
         public TransferedImage DownloadImage(string url)

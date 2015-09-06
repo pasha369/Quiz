@@ -23,3 +23,12 @@ C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\bin\Debug\System.
 C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\bin\Debug\MahApps.Metro.pdb
 C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\bin\Debug\MahApps.Metro.xml
 C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Views\TestProcessView.baml
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\bin\Debug\De.TorstenMandelkow.MetroChart.dll
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Views\TestScoreView.baml
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Views\TestScoreView.g.cs
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Views\AuthView.baml
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Views\AuthView.g.cs
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Views\UserProfileView.baml
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Views\UserProfileView.g.cs
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\obj\Debug\Quiz.csprojResolveAssemblyReference.cache

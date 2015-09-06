@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz\App.xaml
-2-1848720611
+5-98989736
 
-16-842967282
-19875450526
-MainWindow.xaml;Views\TestProcessView.xaml;
+221848885025
+20-1498906569
+MainWindow.xaml;Views\AuthView.xaml;Views\TestProcessView.xaml;Views\TestScoreView.xaml;Views\UserProfileView.xaml;
 
 False
 

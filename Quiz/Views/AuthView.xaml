@@ -1,0 +1,50 @@
+﻿<Controls:MetroWindow x:Class="Quiz.Views.AuthView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+                      Title="AuthView" Height="300" Width="400"
+                      ResizeMode="CanMinimize"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+
+                      WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <TabControl>
+            <TabItem Header="Sign In">
+                <Grid>
+                    <StackPanel Width="200" VerticalAlignment="Center">
+                        <TextBox Margin="5" Name="txtLogin"></TextBox>
+                        <TextBox Margin="5"  Name="txtPassword"></TextBox>
+                        <Button Width="120" Style="{DynamicResource SquareButtonStyle}" Click="BtnSignIn_Click">Sign In</Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Sign Up">
+                <Grid Width="300" Height="200">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock  Grid.Column="0"     Grid.Row="0" Text="Name:"/>
+                    <TextBox    Grid.Column="1"     Grid.Row="0" Margin="5"  Name="txtName"></TextBox>
+                    <TextBlock  Grid.Column="0"     Grid.Row="1" Text="LastName:"/>
+                    <TextBox    Grid.Column="1"     Grid.Row="1" Margin="5"  Name="txtLastName"></TextBox>
+                    <TextBlock  Grid.Column="0"     Grid.Row="2" Text="Login:"/>
+                    <TextBox    Grid.Column="1"     Grid.Row="2" Margin="5" Name="txtUserLogin"></TextBox>
+                    <TextBlock  Grid.Column="0"     Grid.Row="3" Text="Password:"/>
+                    <TextBox    Grid.Column="1"     Grid.Row="3"  Margin="5"  Name="txtUserPassword"></TextBox>
+                    <Button Width="120"  Margin="5"   Grid.ColumnSpan="2"     Grid.Row="4" Style="{DynamicResource SquareButtonStyle}" Click="BtnSignUp_Click">Sign Up</Button>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Controls:MetroWindow>

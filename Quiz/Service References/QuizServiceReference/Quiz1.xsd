@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/QuizMaker.WcfService.Model" />
-  <xs:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService" />
+  <xs:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" />
   <xs:element name="SignIn">
     <xs:complexType>
       <xs:sequence>
@@ -34,14 +33,72 @@
   </xs:element>
   <xs:element name="GetTest">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="testId" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetTestResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/QuizMaker.WcfService.Model" minOccurs="0" name="GetTestResult" nillable="true" type="q1:Test" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" minOccurs="0" name="GetTestResult" nillable="true" type="q1:Test" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnswers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="questionId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnswersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" minOccurs="0" name="GetAnswersResult" nillable="true" type="q2:ArrayOfAnswer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPassedTests">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPassedTestsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" minOccurs="0" name="GetPassedTestsResult" nillable="true" type="q3:ArrayOfTest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableTests">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableTestsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" minOccurs="0" name="GetAvailableTestsResult" nillable="true" type="q4:ArrayOfTest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PassTest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="testId" type="xs:int" />
+        <xs:element minOccurs="0" name="score" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PassTestResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="UploadFile">
@@ -69,7 +126,7 @@
   <xs:element name="DownloadImageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService" minOccurs="0" name="DownloadImageResult" nillable="true" type="q2:TransferedImage" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" minOccurs="0" name="DownloadImageResult" nillable="true" type="q5:TransferedImage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

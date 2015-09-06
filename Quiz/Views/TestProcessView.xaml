@@ -2,53 +2,77 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Models="clr-namespace:QuizMaker.Models"
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      Title="TestProcessView" Height="300" Width="500">
+                      Title="{Binding CurrentTest.Name}" Height="300" Width="500"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+
+                      WindowState="Maximized">
+
     <Window.Resources>
-        
+        <DataTemplate x:Key="MultipleTextChoice" DataType="Models:VariantModel">
+            <WrapPanel>
+                <CheckBox IsChecked="{Binding IsCorrect}"/>
+                <TextBlock Text="{Binding VariantText}"/>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="SingleImageChoice" DataType="Models:VariantModel">
+            <WrapPanel>
+                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+                <Image Source="{Binding ImageSrc}"></Image>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="MultipleImageChoice" DataType="Models:VariantModel">
+            <WrapPanel>
+                <CheckBox IsChecked="{Binding IsCorrect}"/>
+                <Image Source="{Binding ImageSrc}"></Image>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="SingleTextChoice" DataType="Models:VariantModel">
+            <WrapPanel>
+                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+                <TextBlock Text="{Binding VariantText}"/>
+            </WrapPanel>
+        </DataTemplate>
         <DataTemplate x:Key="TextVariant" DataType="Models:VariantModel">
             <WrapPanel>
-                
-                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+
+                <!--<RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>-->
                 <TextBlock Text="{Binding VariantText}"/>
             </WrapPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="ImageVariant" DataType="Models:VariantModel">
             <WrapPanel>
-                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+
+                <!--<RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>-->
                 <Image Source="{Binding ImageSrc}"></Image>
             </WrapPanel>
         </DataTemplate>
     </Window.Resources>
 
 
-        <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <TextBlock FontSize="20" Padding="10">Quiz template</TextBlock>
-            <TextBlock Background="CornflowerBlue" Padding="10 5"
-                        Name="txtbCurInfo">
-            </TextBlock>
-
 
             <!--Question-->
             <TextBlock FontSize="14" Padding="50 10" Name="txtbQuestion"
                        Text="{Binding CurrentQuestion.QuestionText}">
             </TextBlock>
-            <!--Question-->
 
             <!--Choose variant-->
 
-            <GroupBox Header="Answer" Grid.Column="0">
+            <GroupBox Header="Choose correct answer" Grid.Column="0">
 
                 <ListView 
-
+                    
                     ItemsSource="{Binding Path=CurrentQuestion.Variants, 
                                 UpdateSourceTrigger=PropertyChanged}"
                     BorderThickness="0">
+                    
                     <ListView.ItemTemplate>
 
                         <DataTemplate DataType="Models:VariantModel">
@@ -57,13 +81,34 @@
                                     <Style TargetType="{x:Type ContentControl}">
 
                                         <!-- Default Template -->
-                                        <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=TextVariant}" />
+                                        <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=SingleTextChoice}" />
 
                                         <!-- Triggers to change Template -->
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Type}" Value="Image">
-                                                <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=ImageVariant}" />
-                                            </DataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=Type}" Value="Image" />
+                                                    <Condition Binding="{Binding Path=IsMultiple}" Value="True" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="ContentTemplate" 
+                                                        Value="{StaticResource ResourceKey=MultipleImageChoice}" />
+                                            </MultiDataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=Type}" Value="Image" />
+                                                    <Condition Binding="{Binding Path=IsMultiple}" Value="False" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="ContentTemplate" 
+                                                        Value="{StaticResource ResourceKey=SingleImageChoice}" />
+                                            </MultiDataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=Type}" Value="Text" />
+                                                    <Condition Binding="{Binding Path=IsMultiple}" Value="True" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="ContentTemplate" 
+                                                        Value="{StaticResource ResourceKey=MultipleTextChoice}" />
+                                            </MultiDataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </ContentControl.Style>
@@ -100,7 +145,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Name="btnPrev" Command="{Binding PrevCmd}">Prev</Button>
-            <Button Grid.Column="1" Name="btnFinish" >Finish</Button>
+            <Button Grid.Column="1" Name="btnFinish" Click="btnFinish_Click">Finish</Button>
             <Button Grid.Column="2" Name="btnNext" Command="{Binding NextCmd}">Next</Button>
         </Grid>
         <!--Button panel-->

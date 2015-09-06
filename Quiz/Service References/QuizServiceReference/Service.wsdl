@@ -4,9 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/QuizMaker.WcfService.Model" />
-      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" />
-      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService" />
+      <xsd:import schemaLocation="http://localhost:10000/Quiz?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Quiz.Service.WcfService.Model" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IAuth_SignIn_InputMessage">
@@ -26,6 +24,30 @@
   </wsdl:message>
   <wsdl:message name="ITestOperation_GetTest_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetAnswers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnswers" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetAnswers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnswersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetPassedTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPassedTests" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetPassedTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPassedTestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetAvailableTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableTests" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_GetAvailableTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableTestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_PassTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:PassTest" />
+  </wsdl:message>
+  <wsdl:message name="ITestOperation_PassTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PassTestResponse" />
   </wsdl:message>
   <wsdl:message name="IFileTransfer_UploadFile_InputMessage">
     <wsdl:part name="parameters" element="tns:UploadFile" />
@@ -53,6 +75,22 @@
     <wsdl:operation name="GetTest">
       <wsdl:input wsaw:Action="http://tempuri.org/ITestOperation/GetTest" message="tns:ITestOperation_GetTest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITestOperation/GetTestResponse" message="tns:ITestOperation_GetTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestOperation/GetAnswers" message="tns:ITestOperation_GetAnswers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestOperation/GetAnswersResponse" message="tns:ITestOperation_GetAnswers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPassedTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestOperation/GetPassedTests" message="tns:ITestOperation_GetPassedTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestOperation/GetPassedTestsResponse" message="tns:ITestOperation_GetPassedTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestOperation/GetAvailableTests" message="tns:ITestOperation_GetAvailableTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestOperation/GetAvailableTestsResponse" message="tns:ITestOperation_GetAvailableTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PassTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestOperation/PassTest" message="tns:ITestOperation_PassTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestOperation/PassTestResponse" message="tns:ITestOperation_PassTest_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IFileTransfer">
@@ -90,6 +128,42 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetTest">
       <soap:operation soapAction="http://tempuri.org/ITestOperation/GetTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <soap:operation soapAction="http://tempuri.org/ITestOperation/GetAnswers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPassedTests">
+      <soap:operation soapAction="http://tempuri.org/ITestOperation/GetPassedTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableTests">
+      <soap:operation soapAction="http://tempuri.org/ITestOperation/GetAvailableTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PassTest">
+      <soap:operation soapAction="http://tempuri.org/ITestOperation/PassTest" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

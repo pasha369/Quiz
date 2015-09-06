@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Data.Entity.Validation;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using System.Windows.Input;
 using Quiz.QuizServiceReference;
 using QuizMaker.Commands;
@@ -23,16 +20,20 @@ namespace QuizMaker.ViewModels
     /// </summary>
     public class TestEditViewModel : ObservableObject
     {
-
+        private VariantModel _currentVariant;
         private QuestionModel _currentQuestion;
 
         private ObservableCollection<QuestionModel> _testQuestions;
         private Tests _currentTest;
 
         private ICommand _saveQuestionCmd;
+        private ICommand _delQuestionCmd;
+
         private ICommand _saveTestCmd;
+
         private ICommand _addVariantCmd;
         private ICommand _addVariantImgCmd;
+        private ICommand _delVariantCmd;
 
         public TestEditViewModel(Tests test)
         {
@@ -41,7 +42,17 @@ namespace QuizMaker.ViewModels
             _testQuestions = new ObservableCollection<QuestionModel>();
 
         }
-
+        public ICommand DelQuestionCmd
+        {
+            get
+            {
+                if (_delQuestionCmd == null)
+                {
+                    _delQuestionCmd = new RelayCommand(param => DeleteQuestion());
+                }
+                return _delQuestionCmd;
+            }
+        }
         public ICommand SaveQuestionCmd
         {
             get
@@ -87,6 +98,19 @@ namespace QuizMaker.ViewModels
                 return _addVariantImgCmd;
             }
         }
+        public ICommand DelVariantCmd
+        {
+            get
+            {
+                if (_delVariantCmd == null)
+                {
+                    _delVariantCmd = new RelayCommand(parm => DeleteVariant());
+                }
+                return _delVariantCmd;
+            }
+        }
+
+
 
         private void AddVariantImage()
         {
@@ -106,7 +130,6 @@ namespace QuizMaker.ViewModels
                 }
             }
         }
-
         public QuestionModel CurrentQuestion
         {
             get { return _currentQuestion; }
@@ -119,59 +142,73 @@ namespace QuizMaker.ViewModels
                 }
             }
         }
-
+        public VariantModel CurrentVariant
+        {
+            get { return _currentVariant; }
+            set
+            {
+                _currentVariant = value;
+                OnPropertyChanged("CurrentVariant");
+            }
+        }
 
 
         private void AddVariant()
         {
             CurrentQuestion.Variants.Add(new VariantModel());
         }
-
+        private void DeleteVariant()
+        {
+            if(CurrentVariant != null)
+            {
+                CurrentQuestion.Variants.Remove(CurrentVariant);
+            }
+        }
         private void SaveTest()
         {
             try
             {
-            using (var context = new QuizDBEntities())
-            {
-                var questionIdx = context.Questions.ToList().Select(t => t.id).Max() + 1;
-                var variantIdx = context.Variants.ToList().Select(t => t.id).Max() + 1;
-                context.Tests.Add(_currentTest);
-                
-                foreach (var itemQuestion in _testQuestions)
+                using (var context = new QuizDBEntities())
                 {
-                    var question = new Questions();
-                    question.id = questionIdx++;
-                    question.testId = this._currentTest.id;
-                    question.question = itemQuestion.QuestionText;
-                    //TODO: list variants
+                    var questionIdx = context.Questions.ToList().Select(t => t.id).Max() + 1;
+                    var variantIdx = context.Variants.ToList().Select(t => t.id).Max() + 1;
+                    context.Tests.Add(_currentTest);
 
-                    foreach (var itemVariant in itemQuestion.Variants)
+                    foreach (var itemQuestion in _testQuestions)
                     {
-                        var variant = new Variants();
-                        variant.id = variantIdx++;
-                        variant.variant = itemVariant.VariantText;
-                        variant.imgPath = itemVariant.ImageUri;
-                        variant.variant_type = itemVariant.Type;
-                        variant.questionId = question.id;
-                        if (itemVariant.IsCorrect == true)
+                        var question = new Questions();
+                        question.id = questionIdx++;
+                        question.testId = this._currentTest.id;
+                        question.question = itemQuestion.QuestionText;
+                        //TODO: list variants
+
+                        foreach (var itemVariant in itemQuestion.Variants)
                         {
-                            var answer = new Answers();
-                            answer.questionId = question.id;
-                            answer.variantId = variant.id;
-                            context.Answers.Add(answer);
+                            var variant = new Variants();
+                            variant.id = variantIdx++;
+                            variant.variant = itemVariant.VariantText;
+                            variant.imgPath = itemVariant.ImageUri;
+                            variant.variant_type = itemVariant.Type;
+                            variant.questionId = question.id;
+                            if (itemVariant.IsCorrect == true)
+                            {
+                                var answer = new Answers();
+                                answer.questionId = question.id;
+                                answer.variantId = variant.id;
+                                context.Answers.Add(answer);
+                            }
+                            question.Variants.Add(variant);
                         }
-                        question.Variants.Add(variant);
+                        //
+                        context.Questions.Add(question);
                     }
-                    //
-                    context.Questions.Add(question);
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
-            }
 
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
 
-                
+
             }
             catch (DbEntityValidationException e)
             {
@@ -190,10 +227,24 @@ namespace QuizMaker.ViewModels
         }
 
 
+        private void DeleteQuestion()
+        {
+            if (TestQuestions.Contains(CurrentQuestion))
+            {
+                TestQuestions.Remove(CurrentQuestion);
+            }
+        }
         private void SaveQuestion()
         {
-            TestQuestions.Add(CurrentQuestion);
-            CurrentQuestion = new QuestionModel();
+            if (TestQuestions.Contains(CurrentQuestion))
+            {
+                CurrentQuestion = new QuestionModel();
+            }
+            else
+            {
+                TestQuestions.Add(CurrentQuestion);
+                CurrentQuestion = new QuestionModel();
+            }
         }
 
         private string UploadImg()
@@ -218,7 +269,7 @@ namespace QuizMaker.ViewModels
                 }
 
                 path = fileTransfer.UploadFile(imgData, name);
-                
+
             }
             return path;
         }

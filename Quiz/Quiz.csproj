@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="De.TorstenMandelkow.MetroChart">
+      <HintPath>..\packages\ModernUICharts.1.0.2\lib\De.TorstenMandelkow.MetroChart.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.1.1.3-ALPHA152\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -77,9 +80,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Models\ScoreModel.cs" />
     <Compile Include="ViewModels\TestProcessViewModel.cs" />
+    <Compile Include="ViewModels\TestScoreViewModel.cs" />
+    <Compile Include="ViewModels\UserProfileViewModel.cs" />
+    <Compile Include="Views\AuthView.xaml.cs">
+      <DependentUpon>AuthView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TestProcessView.xaml.cs">
       <DependentUpon>TestProcessView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestScoreView.xaml.cs">
+      <DependentUpon>TestScoreView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserProfileView.xaml.cs">
+      <DependentUpon>UserProfileView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -93,7 +108,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TestProcessView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestScoreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +149,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\QuizServiceReference\Quiz.QuizServiceReference.Answer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\QuizServiceReference\Quiz.QuizServiceReference.Test.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -135,12 +165,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\QuizServiceReference\Quiz2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\QuizServiceReference\Quiz3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\QuizServiceReference\Quiz4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\QuizServiceReference\Service.wsdl" />

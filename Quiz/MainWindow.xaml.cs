@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Quiz.QuizServiceReference;
+using Quiz.ViewModels;
 using Quiz.Views;
 
 namespace Quiz
@@ -25,24 +26,15 @@ namespace Quiz
         public MainWindow()
         {
             InitializeComponent();
-            var view = new TestProcessView();
+            var view = new AuthView();
+
             view.Show();
             this.Close();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            AuthClient client = new AuthClient();
-            ITestOperation testClient = new TestOperationClient();
-            if(client.SignIn(txtLogin.Text, txtPassword.Text))
-            {
-                txtResult.Text = "Success " + testClient.GetTest().Name;
-                
-            }
-            else
-            {
-                txtResult.Text = "Fail";
-            }
+
         }
     }
 }
