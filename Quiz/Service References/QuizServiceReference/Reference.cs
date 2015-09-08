@@ -106,6 +106,9 @@ namespace Quiz.QuizServiceReference {
         private string QuestionTextField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Quiz.QuizServiceReference.Variant[] VariantsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -140,6 +143,19 @@ namespace Quiz.QuizServiceReference {
                 if ((object.ReferenceEquals(this.QuestionTextField, value) != true)) {
                     this.QuestionTextField = value;
                     this.RaisePropertyChanged("QuestionText");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
                 }
             }
         }

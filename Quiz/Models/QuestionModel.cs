@@ -17,10 +17,20 @@ namespace QuizMaker.Models
         private string _questionText;
         private ObservableCollection<VariantModel> _variants;
         private int _answerId;
-
+        private string _type;
         public QuestionModel()
         {
             _variants = new ObservableCollection<VariantModel>();
+        }
+
+        public string Type
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+                OnPropertyChanged("Type");
+            }
         }
 
         public int QuestionId
@@ -48,7 +58,8 @@ namespace QuizMaker.Models
             {
                 return _variants;
             }
-            set { 
+            set
+            {
                 _variants = value;
                 OnPropertyChanged("Variants");
             }
@@ -56,7 +67,8 @@ namespace QuizMaker.Models
         public int AnswerId
         {
             get { return _answerId; }
-            set { 
+            set
+            {
                 _answerId = value;
                 OnPropertyChanged("AnswerId");
             }

@@ -10,8 +10,6 @@ namespace Quiz.Service.WcfService.Model
         [DataMember]
         public string VariantText;
         [DataMember]
-        public string Type;
-        [DataMember]
         public string ImageUri;
 
     }

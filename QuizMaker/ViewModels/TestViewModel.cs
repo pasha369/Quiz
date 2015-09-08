@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ServiceModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using QuizMaker.Commands;
 using QuizMaker.Models;
 using QuizMaker.Models.DatabaseEntity;
-using QuizMaker.Views;
-using QuizMaker.WcfService;
 
 namespace QuizMaker.ViewModels
 {

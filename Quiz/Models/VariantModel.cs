@@ -14,19 +14,7 @@ namespace QuizMaker.Models
         private string _imageUri;
         private bool _isCorrect;
         private BitmapImage _imgSrc;
-        private string _type;
         private string _isMultiple;
-
-        public string Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                OnPropertyChanged("Type");
-            }
-        }
-
 
         public string ImageUri
         {

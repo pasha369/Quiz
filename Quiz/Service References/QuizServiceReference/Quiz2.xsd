@@ -18,6 +18,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="QuestionText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Variants" nillable="true" type="tns:ArrayOfVariant" />
     </xs:sequence>
   </xs:complexType>

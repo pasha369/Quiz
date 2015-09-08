@@ -24,7 +24,7 @@
                       BorderThickness="0">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="DatabaseEntity:Tests">
-                        <TextBlock Text="{Binding name}"/>
+                        <TextBlock Text="{Binding name}" HorizontalAlignment="Center"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

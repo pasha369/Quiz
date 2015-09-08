@@ -48,6 +48,12 @@
                 <Image Source="{Binding ImageSrc}"></Image>
             </WrapPanel>
         </DataTemplate>
+        <DataTemplate x:Key="MultipleChoice" DataType="Models:VariantModel">
+            <CheckBox Margin="5"    IsChecked="{Binding IsCorrect}" />
+        </DataTemplate>
+        <DataTemplate x:Key="SingleChoice" DataType="Models:VariantModel">
+            <RadioButton Margin="5"    IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
+        </DataTemplate>
     </Window.Resources>
 
 
@@ -56,10 +62,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        <DockPanel Grid.Row="0">
 
             <!--Question-->
-            <TextBlock FontSize="14" Padding="50 10" Name="txtbQuestion"
+            <TextBlock DockPanel.Dock="Top" FontSize="14" Padding="50 10" Name="txtbQuestion"
                        Text="{Binding CurrentQuestion.QuestionText}">
             </TextBlock>
 
@@ -72,71 +78,46 @@
                     ItemsSource="{Binding Path=CurrentQuestion.Variants, 
                                 UpdateSourceTrigger=PropertyChanged}"
                     BorderThickness="0">
-                    
+
                     <ListView.ItemTemplate>
 
                         <DataTemplate DataType="Models:VariantModel">
-                            <ContentControl Content="{Binding }" >
-                                <ContentControl.Style>
-                                    <Style TargetType="{x:Type ContentControl}">
 
-                                        <!-- Default Template -->
-                                        <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=SingleTextChoice}" />
-
-                                        <!-- Triggers to change Template -->
-                                        <Style.Triggers>
-                                            <MultiDataTrigger>
-                                                <MultiDataTrigger.Conditions>
-                                                    <Condition Binding="{Binding Path=Type}" Value="Image" />
-                                                    <Condition Binding="{Binding Path=IsMultiple}" Value="True" />
-                                                </MultiDataTrigger.Conditions>
-                                                <Setter Property="ContentTemplate" 
-                                                        Value="{StaticResource ResourceKey=MultipleImageChoice}" />
-                                            </MultiDataTrigger>
-                                            <MultiDataTrigger>
-                                                <MultiDataTrigger.Conditions>
-                                                    <Condition Binding="{Binding Path=Type}" Value="Image" />
-                                                    <Condition Binding="{Binding Path=IsMultiple}" Value="False" />
-                                                </MultiDataTrigger.Conditions>
-                                                <Setter Property="ContentTemplate" 
-                                                        Value="{StaticResource ResourceKey=SingleImageChoice}" />
-                                            </MultiDataTrigger>
-                                            <MultiDataTrigger>
-                                                <MultiDataTrigger.Conditions>
-                                                    <Condition Binding="{Binding Path=Type}" Value="Text" />
-                                                    <Condition Binding="{Binding Path=IsMultiple}" Value="True" />
-                                                </MultiDataTrigger.Conditions>
-                                                <Setter Property="ContentTemplate" 
-                                                        Value="{StaticResource ResourceKey=MultipleTextChoice}" />
-                                            </MultiDataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ContentControl.Style>
-                            </ContentControl>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding}">
+                                    <ContentControl.Style>
+                                        <Style TargetType="{x:Type ContentControl}">
+                                            <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=SingleChoice}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource=
+			                                                {RelativeSource FindAncestor, 
+			                                                AncestorType={x:Type ListView}}, 
+			                                                Path= DataContext.CurrentQuestion.Type}"  Value="Multiple">
+                                                    <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=MultipleChoice}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding VariantText}"/>
+                                <Image Grid.Column="1" Grid.Row="1" Source="{Binding ImageSrc}"></Image>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
 
-
-                <!--<ListView ItemsSource="{Binding Path=CurrentQuestion.Variants, UpdateSourceTrigger=PropertyChanged}">
-                    <ListView.BorderThickness>0</ListView.BorderThickness>
-                        <ListView.ItemTemplate>
-                        <DataTemplate DataType="Models:VariantModel">
-                            <WrapPanel>
-                                <RadioButton IsChecked="{Binding IsCorrect}" GroupName="Answers"/>
-                                <TextBlock Text="{Binding VariantText}"/>
-                            </WrapPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
-                <!--<ScrollViewer  Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" Height="140" CanContentScroll="True">
-                                <StackPanel Name="stackVariants">
-                                </StackPanel>
-                            </ScrollViewer>-->
             </GroupBox>
             <!--Choose variant-->
             <!--Button panel-->
-        </StackPanel>
+        </DockPanel>
         <Grid Grid.Row="1" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>

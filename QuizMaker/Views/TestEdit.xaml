@@ -144,7 +144,7 @@
                                                             <DataTrigger Binding="{Binding RelativeSource=
 			                                                {RelativeSource FindAncestor, 
 			                                                AncestorType={x:Type ListView}}, 
-			                                                Path= DataContext.CurrentQuestion.IsMultiple}"  Value="true">
+			                                                Path= DataContext.CurrentQuestion.Type}"  Value="Multiple">
                                                                 <Setter Property="ContentTemplate" Value="{StaticResource ResourceKey=MultipleChoice}"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>

@@ -43,10 +43,11 @@ namespace Quiz.ViewModels
                 QuestionModel questionModel = new QuestionModel();
                 questionModel.QuestionId = questionItem.Id;
                 questionModel.QuestionText = questionItem.QuestionText;
+                questionModel.Type = questionItem.Type;
                 foreach (var variantItem in questionItem.Variants)
                 {
                     var variant = new VariantModel();
-                    if (variantItem.Type == "Image")
+                    if (variantItem.ImageUri !=  null)
                     {
                         FileTransferClient fileTransfer = new FileTransferClient();
 
@@ -56,13 +57,13 @@ namespace Quiz.ViewModels
                         variant.IsMultiple = "False";
                         variant.Type = variantItem.Type;
                         variant.VariantId = variantItem.Id;
+
                     }
-                    else
-                    {
-                        variant.VariantText = variantItem.VariantText;
-                        variant.Type = variantItem.Type;
-                        variant.VariantId = variantItem.Id;
-                    }
+
+                    variant.VariantText = variantItem.VariantText;
+                    variant.Type = variantItem.Type;
+                    variant.VariantId = variantItem.Id;
+
                     questionModel.Variants.Add(variant);
                 }
                 _questions.Add(questionModel);

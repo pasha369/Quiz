@@ -80,7 +80,6 @@ namespace QuizMaker.ViewModels
             }
         }
 
-        #region Commands
         public ICommand AddMultipleQ
         {
             get
@@ -173,7 +172,7 @@ namespace QuizMaker.ViewModels
                 return _delVariantCmd;
             }
         }
-        #endregion
+
 
         /// <summary>
         /// Add question with multiple correct variants
@@ -181,7 +180,7 @@ namespace QuizMaker.ViewModels
         private void AddMultipleQuestion()
         {
             CurrentQuestion = new QuestionModel();
-            CurrentQuestion.IsMultiple = "true";
+            CurrentQuestion.Type = "Multiple";
         }
 
         /// <summary>
@@ -190,7 +189,7 @@ namespace QuizMaker.ViewModels
         private void AddSingleQuestion()
         {
             CurrentQuestion = new QuestionModel();
-            CurrentQuestion.IsMultiple = "false";
+            CurrentQuestion.Type = "Single";
         }
 
         /// <summary>
@@ -198,10 +197,13 @@ namespace QuizMaker.ViewModels
         /// </summary>
         private void AddVariantImage()
         {
-            CurrentQuestion.Variants[0].Type = "Image";
-            CurrentQuestion.Variants
-                .First(v => v == CurrentVariant)
-                .ImageUri = UploadImg();
+            var variant = CurrentQuestion.Variants
+                .FirstOrDefault(v => v == CurrentVariant);
+            if(variant != null)
+            {
+                variant.ImageUri = UploadImg();
+            }
+                
         }
         /// <summary>
         /// Add new variant to current question variants
@@ -232,6 +234,7 @@ namespace QuizMaker.ViewModels
                 using (var context = new QuizDBEntities())
                 {
                     var questionIdx = context.Questions.ToList().Select(t => t.id).Max() + 1;
+                    var answerIdx = context.Answers.ToList().Select(t => t.id).Max() + 1;
                     var variantIdx = context.Variants.ToList().Select(t => t.id).Max() + 1;
                     context.Tests.Add(_currentTest);
 
@@ -241,6 +244,7 @@ namespace QuizMaker.ViewModels
                         question.id = questionIdx++;
                         question.testId = this._currentTest.id;
                         question.question = itemQuestion.QuestionText;
+                        question.question_type = itemQuestion.Type;
                         //TODO: list variants
 
                         foreach (var itemVariant in itemQuestion.Variants)
@@ -249,11 +253,12 @@ namespace QuizMaker.ViewModels
                             variant.id = variantIdx++;
                             variant.variant = itemVariant.VariantText;
                             variant.imgPath = itemVariant.ImageUri;
-                            variant.variant_type = itemVariant.Type;
+                            //variant.variant_type = itemVariant.Type;
                             variant.questionId = question.id;
                             if (itemVariant.IsCorrect == true)
                             {
                                 var answer = new Answers();
+                                answer.id = answerIdx++;
                                 answer.questionId = question.id;
                                 answer.variantId = variant.id;
                                 context.Answers.Add(answer);

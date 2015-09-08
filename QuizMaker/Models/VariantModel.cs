@@ -9,7 +9,6 @@ namespace QuizMaker.Models
         private string _variantText;
         private string _imageUri;
         private bool _isCorrect;
-        private string _type;
 
         public string ImageUri
         {
@@ -50,14 +49,5 @@ namespace QuizMaker.Models
             }
         }
 
-        public string Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                OnPropertyChanged("Type");
-            }
-        }
     }
 }

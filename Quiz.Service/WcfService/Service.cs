@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using Quiz.Service.WcfService.Abstract;
@@ -56,6 +57,7 @@ namespace Quiz.Service.WcfService
                                                                              {
                                                                                  Id = q.id,
                                                                                  QuestionText = q.question,
+                                                                                 Type = q.question_type,
                                                                                  Variants = variants
                                                                                  .Where(v => v.questionId == q.id)
                                                                                  .Select(v => new Variant
@@ -172,6 +174,7 @@ namespace Quiz.Service.WcfService
                     var path = String.Format("{0}\\Images\\{1}",
                                              dir_path, filename);
                     img.Save(path);
+
                     return path;
                 }
                 catch (Exception ex)

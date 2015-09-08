@@ -7,3 +7,4 @@ C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug
 C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\obj\Debug\Quiz.Service.exe
 C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\obj\Debug\Quiz.Service.pdb
+C:\Users\pasha\Documents\Visual Studio 2012\Projects\Quiz\Quiz.Service\obj\Debug\Quiz.Service.csprojResolveAssemblyReference.cache

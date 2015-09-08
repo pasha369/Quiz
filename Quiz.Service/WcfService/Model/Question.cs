@@ -12,5 +12,7 @@ namespace Quiz.Service.WcfService.Model
         public string QuestionText;
         [DataMember]
         public List<Variant> Variants;
+        [DataMember] 
+        public string Type;
     }
 }

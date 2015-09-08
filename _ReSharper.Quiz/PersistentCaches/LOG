@@ -1,5 +1,5 @@
-2015/09/06-11:34:59.458 bf0 Recovering log #125
-2015/09/06-11:34:59.459 bf0 Level-0 table #128: started
-2015/09/06-11:34:59.491 bf0 Level-0 table #128: 7686 bytes OK
-2015/09/06-11:34:59.551 bf0 Delete type=0 #125
-2015/09/06-11:34:59.551 bf0 Delete type=3 #123
+2015/09/08-19:31:07.974 da0 Recovering log #148
+2015/09/08-19:31:07.974 da0 Level-0 table #150: started
+2015/09/08-19:31:07.974 da0 Level-0 table #150: 0 bytes OK
+2015/09/08-19:31:08.047 da0 Delete type=0 #148
+2015/09/08-19:31:08.047 da0 Delete type=3 #146

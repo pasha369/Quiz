@@ -1,66 +1,66 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestProcessView.xaml.cs" caret="791" fromTop="19" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:StartPageViewModel.cs" caret="0" fromTop="0" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:MainViewModel.cs" caret="0" fromTop="0" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestProcessViewModel.cs" caret="958" fromTop="18" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:UserProfileView.xaml.cs" caret="661" fromTop="12" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:MainWindow.xaml.cs" caret="0" fromTop="0" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:App.config" caret="192" fromTop="5" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestScoreView.xaml.cs" caret="597" fromTop="14" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:AuthView.xaml.cs" caret="969" fromTop="17" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestScoreViewModel.cs" caret="2067" fromTop="11" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:UserProfileViewModel.cs" caret="1063" fromTop="19" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:MainWindow.xaml" caret="0" fromTop="0" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestEditViewModel.cs" caret="6723" fromTop="32" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Views/f:TestEdit.xaml" caret="5807" fromTop="1" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:App.config" caret="3151" fromTop="12" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:MainWindow.xaml.cs" caret="1415" fromTop="29" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:App.xaml" caret="0" fromTop="0" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Abstract/f:IFileTransfer.cs" caret="402" fromTop="16" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestViewModel.cs" caret="1317" fromTop="49" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/f:Program.cs" caret="404" fromTop="14" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/f:App.config" caret="1351" fromTop="11" />
     <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Abstract/f:ITestOperation.cs" caret="592" fromTop="23" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/f:Service.cs" caret="5851" fromTop="24" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Variant.cs" caret="346" fromTop="15" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Test.cs" caret="351" fromTop="16" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:TransferedImage.cs" caret="78" fromTop="2" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:BaseViewModel.cs" caret="0" fromTop="0" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Question.cs" caret="0" fromTop="0" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:ITestModel.cs" caret="0" fromTop="0" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Answer.cs" caret="0" fromTop="0" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:MainWindow.xaml" caret="247" fromTop="0" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:AuthView.xaml.cs" caret="952" fromTop="27" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:UserProfileViewModel.cs" caret="308" fromTop="7" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestScoreView.xaml.cs" caret="597" fromTop="14" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:UserProfileView.xaml.cs" caret="851" fromTop="19" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:MainWindow.xaml.cs" caret="817" fromTop="16" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:MainWindow.xaml.cs" caret="1415" fromTop="29" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Models/d:Abstract/f:IQuestionModel.cs" caret="0" fromTop="0" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestProcessView.xaml.cs" caret="952" fromTop="18" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/f:App.config" caret="1351" fromTop="11" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/f:Program.cs" caret="404" fromTop="14" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Views/f:TestEdit.xaml.cs" caret="1459" fromTop="8" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Commands/f:RelayCommand.cs" caret="1786" fromTop="31" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestScoreViewModel.cs" caret="0" fromTop="0" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:QuestionModel.cs" caret="849" fromTop="21" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestProcessView.xaml" caret="4275" fromTop="9" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestProcessViewModel.cs" caret="2371" fromTop="26" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Test.cs" caret="159" fromTop="6" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:ScoreModel.cs" caret="91" fromTop="5" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Question.cs" caret="337" fromTop="13" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestEditViewModel.cs" caret="7241" fromTop="144" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/f:Service.cs" caret="2906" fromTop="26" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Variant.cs" caret="238" fromTop="10" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Models/f:VariantModel.cs" caret="1217" fromTop="19" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:VariantModel.cs" caret="456" fromTop="16" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Views/f:TestEdit.xaml" caret="9197" fromTop="0" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Models/f:QuestionModel.cs" caret="756" fromTop="16" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestViewModel.cs" caret="131" fromTop="3" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:MainWindow.xaml" caret="1259" fromTop="3" />
   </RecentFiles>
   <RecentEdits>
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:VariantModel.cs" caret="2431" fromTop="20" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:ScoreModel.cs" caret="47" fromTop="2" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Answer.cs" caret="276" fromTop="12" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Variant.cs" caret="346" fromTop="15" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:App.xaml" caret="1065" fromTop="12" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestScoreView.xaml" caret="702" fromTop="9" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:AuthView.xaml" caret="2816" fromTop="5" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:MainWindow.xaml.cs" caret="899" fromTop="18" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Abstract/f:IAuth.cs" caret="72" fromTop="2" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Abstract/f:IFileTransfer.cs" caret="442" fromTop="22" />
     <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:TransferedImage.cs" caret="78" fromTop="2" />
     <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:App.config" caret="388" fromTop="12" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestViewModel.cs" caret="1400" fromTop="14" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Views/f:TestEdit.xaml" caret="4125" fromTop="6" />
-    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestEditViewModel.cs" caret="151" fromTop="5" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:AuthView.xaml.cs" caret="969" fromTop="17" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestProcessView.xaml" caret="396" fromTop="4" />
     <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestScoreView.xaml.cs" caret="597" fromTop="14" />
     <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Abstract/f:ITestOperation.cs" caret="592" fromTop="23" />
     <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:App.config" caret="192" fromTop="5" />
     <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/f:App.config" caret="1351" fromTop="11" />
     <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/f:Program.cs" caret="948" fromTop="30" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:UserProfileView.xaml.cs" caret="943" fromTop="21" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestProcessView.xaml.cs" caret="791" fromTop="19" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestProcessViewModel.cs" caret="954" fromTop="19" />
     <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:UserProfileView.xaml" caret="1402" fromTop="5" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestScoreViewModel.cs" caret="861" fromTop="14" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Test.cs" caret="275" fromTop="11" />
-    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/f:Service.cs" caret="5883" fromTop="24" />
-    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:UserProfileViewModel.cs" caret="968" fromTop="15" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Test.cs" caret="159" fromTop="6" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:MainWindow.xaml" caret="247" fromTop="0" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/f:MainWindow.xaml.cs" caret="817" fromTop="16" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:UserProfileView.xaml.cs" caret="851" fromTop="19" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestProcessView.xaml.cs" caret="952" fromTop="18" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:UserProfileViewModel.cs" caret="308" fromTop="7" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestScoreViewModel.cs" caret="949" fromTop="20" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:ScoreModel.cs" caret="91" fromTop="5" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:AuthView.xaml.cs" caret="952" fromTop="8" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestViewModel.cs" caret="131" fromTop="3" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/f:MainWindow.xaml" caret="1259" fromTop="3" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Models/f:QuestionModel.cs" caret="1054" fromTop="28" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:QuestionModel.cs" caret="849" fromTop="21" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Question.cs" caret="337" fromTop="13" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/f:Service.cs" caret="2328" fromTop="20" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Views/f:TestEdit.xaml" caret="8164" fromTop="5" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:ViewModels/f:TestEditViewModel.cs" caret="8182" fromTop="28" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:ViewModels/f:TestProcessViewModel.cs" caret="2371" fromTop="26" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Views/f:TestProcessView.xaml" caret="4275" fromTop="8" />
+    <File id="F760996C-FA85-4A64-9B6B-0A45177F893D/d:Models/f:VariantModel.cs" caret="1217" fromTop="19" />
+    <File id="FF53F387-5441-45A0-8FF6-D7B340107E45/d:WcfService/d:Model/f:Variant.cs" caret="238" fromTop="10" />
+    <File id="D263FB1F-BD0B-4A7E-8EE7-D9B35437106E/d:Models/f:VariantModel.cs" caret="456" fromTop="9" />
   </RecentEdits>
 </RecentFiles>

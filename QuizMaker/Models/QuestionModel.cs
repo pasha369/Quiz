@@ -18,7 +18,7 @@ namespace QuizMaker.Models
         private string _questionText;
         private ObservableCollection<VariantModel> _variants;
         private int _answerId;
-        private string _isMultiple;
+        private string _type;
         private int _score;
 
         public int Score
@@ -30,13 +30,13 @@ namespace QuizMaker.Models
                 OnPropertyChanged("Score");
             }
         }
-        public string IsMultiple
+        public string Type
         {
-            get { return _isMultiple; }
+            get { return _type; }
             set
             {
-                _isMultiple = value;
-                OnPropertyChanged("IsMultiple");
+                _type = value;
+                OnPropertyChanged("Type");
             }
         }
 
